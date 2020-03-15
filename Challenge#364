@@ -1,1 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
 
+void diceRoll(int n, int diceSides);
+
+int main(int argc, char const *argv[])
+{
+	int n, diceSides;
+	char d;
+
+	while(1)
+	{
+		printf("Dice input in form <ndn>\n");
+		scanf("%d%c%d", &n, &d, &diceSides);
+		diceRoll(n, diceSides);
+	}
+	
+	return 0;
+}
+
+void diceRoll(int n, int diceSides)
+{
+	int sum = 0, temp = 0;
+
+	for (int i = 0; i < n; ++i)
+	{
+		temp = rand() % diceSides + 1;
+		sum = sum + temp;
+
+		printf("On roll %d the %d sided dice rolled %d\n", i + 1, diceSides, temp);
+	}
+
+	printf("Total: %d\n", sum);
+}

@@ -10,8 +10,15 @@ int main(int argc, char const *argv[])
 
 	while(1)
 	{
-		printf("Dice input in form <ndn>\n");
+		printf("Dice input in form <ndn>, -1 for either n to exit\n");
 		scanf("%d%c%d", &n, &d, &diceSides);
+
+		if(n == -1 || diceSides == -1)
+		{
+			printf("Good bye\n");
+			return 0;
+		}
+
 		diceRoll(n, diceSides);
 	}
 	
@@ -20,14 +27,20 @@ int main(int argc, char const *argv[])
 
 void diceRoll(int n, int diceSides)
 {
-	int sum = 0, temp = 0;
+	if(diceSides <= 1 || n < 1)
+	{
+		printf("Invalid input try again\n");
+		return;
+	}
 
-	for (int i = 0; i < n; ++i)
+	int sum = 0, temp;
+
+	for (int i = 1; i <= n; ++i)
 	{
 		temp = rand() % diceSides + 1;
 		sum = sum + temp;
 
-		printf("On roll %d the %d sided dice rolled %d\n", i + 1, diceSides, temp);
+		printf("On roll %d the %d sided dice rolled %d\n", i , diceSides, temp);
 	}
 
 	printf("Total: %d\n", sum);
